@@ -101,6 +101,12 @@ CyberXInfra est notre projet de B3 avec Adrien, Ange Brochard, Marc Texier et Ro
 
     3. Ajoutez en redirecteur l'adresse passerelle de votre routeur, puis appliquez
 
+5. Pour lier les deux contrôleurs de domaine :
+
+    1. Dans le gestionnaire de serveurs, cliquez sur Ajouter d'autres serveur à gérer
+
+    2. Entrez l'adresse IP du DC2, et inversement dans le DC2, entrez l'adresse du DC1
+
 
 
 ### 3.I.C Clients Windows
@@ -123,3 +129,12 @@ CyberXInfra est notre projet de B3 avec Adrien, Ange Brochard, Marc Texier et Ro
     DNS Principal : L'adresse IP du DC1
     DNS Secondaire : L'adresse IP du DC2
     ```
+
+3. Pour ajouter le PC client dans le domaine Active Directory : 
+
+    1. Allez dans Paramètres > Comptes > Comptes Scolaires ou Professionnel > Ajouter un compte
+
+    2. Ajoutez le nom de domaine, entrez en nom d'utilisateur votre user du DC1 et votre mot de passe, puis redémarrez la machine
+
+4. Installez Microsoft Office sur le PC. Légalement ou illégalement, peu importe
+
