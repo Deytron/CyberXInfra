@@ -1,13 +1,15 @@
-# CyberXInfra
+# Cyber X Infra
+---
 
 
-## Table of content
+# Table des matières
 
 1. ### [Introduction](#Introduction)
-2. ### [Showcase](#Showcase)
+2. ### [Fonctionnalités](#Fonctionnalités)
 3. ### [Installation](#Installation)
-    3. #### [Deployment](#Deployment)
-    3. #### [Attack](#Attack)
+    3. #### [Mise en place](#Miseenplace)
+    3. #### [Attaque](#Attaque)
 
 # Introduction
 
+CyberXInfra est notre projet de B3 avec Adrien, Ange Brochard, Marc Texier et Romain Ranaivoson. Le projet consiste en la mise en place d'une infrastructure basique type entreprise et l'attaque de celle-ci via un facteur extérieur. 
