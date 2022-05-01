@@ -9,6 +9,8 @@
 3. ### [Installation](#Installation)
     1. #### [Infrastructure](#Infrastructure)
         1. #### [Pré-requis](#Pré-requis)
+        2. #### [Windows Server](#WindowsServer)
+        3. #### [Clients Windows](#ClientsWindows)
     2. #### [Attaque](#Attaque)
 
 # 1. Introduction
@@ -48,3 +50,76 @@ CyberXInfra est notre projet de B3 avec Adrien, Ange Brochard, Marc Texier et Ro
 - Machine1DEV (Windows 10 1903, min. 2 Go de RAM, 1vCPU et 30Go disque)
 - Machine2ADMIN (Windows 10 1903, min. 2 Go de RAM, 1vCPU et 30Go disque)
 - Monitoring (Linux, min. 1 Go de RAM, 1vCPU et 5Go disque)
+
+### 3.I.B Windows Server
+
+1. Une fois les machines virtuelles _DC_ créées, installez Windows sur les deux machines. Pas besoin de clé produit.
+
+2. Procédez sur les deux machines à la mise en place des services et la création d'une forêt :
+
+    1. Rendez-vous dans le gestionnaire de serveurs (la fenêtre s'ouvre normalement totue seule au lancement)
+    ![](https://i.imgur.com/A9gMqv5.png)
+
+    2. Cliquez sur Gérer > Ajouter des rôles et fonctionnalités
+
+    3. Installez au moins le service AD DS et DNS, puis faites suivant
+
+    4. Une fois l'installation terminée, cliquez sur l'alerte en haut à droite de la fenêtre > Promouvoir le serveur en contrôleur de domaine
+
+    5. Si vous êtes sur le DC1, créez une forêt au passage. Sinon, ajoutez le serveur dans un domaine existant. Nommez le domaine comme vous voulez, pour notre part ça a été "malgache.local".
+
+    6. Mettez les mots de passe de restauration, suivant, blabla et boum ! Redémarrez le PC.
+
+3. Une fois le domaine créé, vous devrez faire quelques réglages réseau :
+
+    1. Clic droit en bas à droite > Ouvrir les paramètres réseau et Internet
+
+    2. Allez dans Ethernet > Modifier les options d'adaptateur > Clic droit sur votre carte Ethernet
+    
+    3. **Désactivez l'IPv6**. C'est pas forcément nécessaire, mais selon votre réseau ça peut tout casser
+
+    4. Cliquez sur Protocole Internet IPv4 > Propriétés, puis changez les paramètres comme suit :
+    
+    ```
+    Adresse IP : Choisissez celle que vous souhaitez
+    Masque de sous-réseau : Adapté selon votre réseau
+    Passerelle : La passerelle de votre routeur
+
+    DNS Principal : 127.0.0.1
+    DNS Secondaire : 8.8.8.8 ou autre
+    ```
+
+    > Théorie : il n'est pas nécessaire de mettre localhost en DNS, mais bon on sait jamais
+
+    ![](https://i.imgur.com/4dHIgSV.png)
+
+4. Vos clients n'auront pas d'accès Internet. Pour remédier à ça, dans le gestionnaire de serveurs :
+
+    1. Cliquez sur Outils > DNS
+
+    2. Clic droit sur **WIN-XXXXXX** > Propriétés > Redirecteurs
+
+    3. Ajoutez en redirecteur l'adresse passerelle de votre routeur, puis appliquez
+
+
+
+### 3.I.C Clients Windows
+
+1. Une fois les machines Windows 10 créées, installez Windows sur les deux machines. Pas besoin de clé produit. Choisissez un nom d'utilisateur random dont vous vous souviendrez.
+
+2. Clic droit en bas à droite > Ouvrir les paramètres réseau et Internet
+
+    1. Allez dans Ethernet > Modifier les options d'adaptateur > Clic droit sur votre carte Ethernet
+    
+    2. **Désactivez l'IPv6**. C'est pas forcément nécessaire, mais selon votre réseau ça peut tout casser
+
+    3. Cliquez sur Protocole Internet IPv4 > Propriétés, puis changez les paramètres comme suit :
+    
+    ```
+    Adresse IP : Choisissez celle que vous souhaitez
+    Masque de sous-réseau : Adapté selon votre réseau
+    Passerelle : La passerelle de votre routeur
+
+    DNS Principal : L'adresse IP du DC1
+    DNS Secondaire : L'adresse IP du DC2
+    ```
