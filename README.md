@@ -11,6 +11,7 @@
         1. #### [Pré-requis](#Pré-requis)
         2. #### [Windows Server](#WindowsServer)
         3. #### [Clients Windows](#ClientsWindows)
+        4. #### [Monitoring](#Monitoring)
     2. #### [Attaque](#Attaque)
 
 # 1. Introduction
@@ -31,7 +32,7 @@ CyberXInfra est notre projet de B3 avec Adrien, Ange Brochard, Marc Texier et Ro
 
 # 3. Installation
 
-### 3.I Infrastructure
+## 3.I Infrastructure
 
 > Le déploiement de l'infrastructure ne peut se faire actuellement de manière automatisée. Ansible (ou autre) peut être envisagé comme évolution logique pour la mise en place de l'infrastructure.
 
@@ -138,3 +139,33 @@ CyberXInfra est notre projet de B3 avec Adrien, Ange Brochard, Marc Texier et Ro
 
 4. Installez Microsoft Office sur le PC. Légalement ou illégalement, peu importe
 
+### 3.I.D Monitoring
+
+1. Une fois la machine Linux créée, installez Rocky Linux sur la machine. User et mot de passe au choix, activez Internet et c'est parti
+
+2. Pour installer Check_MK, l'outil de monitoring, utilisez en tant que sudo les commandes suivantes :
+
+```bash
+dnf install https://download.checkmk.com/checkmk/2.0.0p23/check-mk-raw-2.0.0p23-el8-38.x86_64.rpm
+omd create website
+```
+
+3. Une fois installé, lancez l'interface de monitoring avec `omd start website`
+
+4. Dans votre navigateur, rendez-vous sur http://IPMACHINE/website/ et connectez-vous avec les credentials donnés lors de la création du site
+
+5. Vous pouvez ajouter des hôtes et customiser votre dashboard comme vous le souhaitez pour surveiller votre réseau. Seulement, si vous souhaitez surveiller un hôte, vous devez installer l'agent de surveillance.
+
+    1. Sur les Windows, utilisez cette commandes Powershell :
+    ```
+    $client = New-Object System.Net.WebClient
+    $client.DownloadFile("http://IPMACHINE/monitorsite/check_mk/agents/windows/check_mk_agent.msi", .\check_mk_agent.msi)
+    ```
+
+    2. Double cliquez sur le fichier check_mk_agent.msi et suivez les instructions
+
+    Notre dashboard ressemble à ceci, très basique
+
+    ![](https://i.imgur.com/CLf9Nhr.png)
+
+## 3.II Attaque
