@@ -181,8 +181,11 @@ L'attaque se déroule en trois étapes:
     -Puis la toisième partie un script se lancera pour pousser le .exe sur la gpo .
 
 1.ps1
+
 2.ps1 administrator
+
 3.bat
+
 4.exe
 Ce point exe écrit en python se nomme Windows coolsence pour paraître inaperçu, après son éxécution il récupère le ipconfig/all du pc le converti en base 64, puis envoie 32 caractères ping par ping sur un vps. Sur la partie vps l'attaquant a ouvert deux fenêtres une avec un tcpdump comme cela :
 ```sudo tcpdump -i ens3 src XXX.XXX.XXX.XXX and icmp -A -n >> resultat_tcpdump.txt```
