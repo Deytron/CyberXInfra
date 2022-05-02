@@ -193,7 +193,7 @@ Ce point exe écrit en python se nomme Windows coolsence pour paraître inaperç
 ```sudo tcpdump -i ens3 src XXX.XXX.XXX.XXX and icmp -A -n >> resultat_tcpdump.txt```
 
 Le -A récupère les paquets le -n résout les adresses IP puis le tout exporté sur resultat_tcpdump.txt.
-Pour la src si vous avez l'adresse ip de la machine c'est plus simple sinon vous mettez la votre car le pong renverra les caractères également donc vous pourrez récupérer.
+Pour la src si vous avez l'adresse ip de la machine c'est plus simple sinon vous mettez la votre car le pong renverra les caractères également donc vous pourrez les récupérer.
 
 Et une deuxième fenêtre dans >> pour avoir une fenêtre verbeuse histoire de savoir quand l'attaque sera finit.
 Une fois fini l'attaquant éxécutera un script bash qui récupèrera le resultat_tcpdump.txt et reformer le fichier en base 64.
