@@ -177,23 +177,23 @@ omd create website
 
 L'attaque se déroule en trois étapes: 
 
-- la première une campagne de phishing quoi de mieux étant donné que dans le monde plus de 90% des données volées sont dûes à une campagne de phishing.
-- Dans la deuxième partie, dans ce mail il y aura un fichier excel pour Martine de la compta qui l'ouvrira celui-ci cachera un fichier.exe, 2 fichiers ps1 et un fichier bat.
-- Puis la toisième partie un script se lancera pour pousser le .exe sur la gpo .
+- La première étape est une campagne de phishing. Quoi de mieux étant donné que, dans le monde, plus de 90% des données volées sont dûes à une campagne de phishing.
+- Dans la deuxième partie, il y aura un fichier Excel dans le mail pour Martine de la compta qui l'ouvrira. Celui-ci cachera un fichier.exe, 2 fichiers ps1 et un fichier bat.
+- La troisième partie utilisera un script qui se lancera pour pousser le .exe sur la GPO.
 
-### 1.ps1
+### 1. init.ps1
 
-### 2.ps1 administrator
+### 2. one.ps1 administrator
 
-### 3.bat
+### 3. c2.bat
 
 ### 4.exe
-Ce point exe écrit en python se nomme Windows coolsence pour paraître inaperçu, après son éxécution il récupère le ipconfig/all du pc le converti en base 64, puis envoie 32 caractères ping par ping sur un vps. Sur la partie vps l'attaquant a ouvert deux fenêtres une avec un tcpdump comme cela :
+Ce .exe écrit en Python se nomme "Windows coolsence" pour paraître inaperçu. Après son exécution, il récupère l'output de la commande `ipconfig/all` du PC, le converti en base64, puis envoie 32 caractères ping par ping sur un VPS. Sur la partie VPS, l'attaquant a ouvert deux fenêtres, une avec un tcpdump comme cela :
 
 ```sudo tcpdump -i ens3 src XXX.XXX.XXX.XXX and icmp -A -n >> resultat_tcpdump.txt```
 
-Le -A récupère les paquets le -n résout les adresses IP puis le tout exporté sur resultat_tcpdump.txt.
-Pour la src si vous avez l'adresse ip de la machine c'est plus simple sinon vous mettez la votre car le pong renverra les caractères également donc vous pourrez les récupérer.
+Le `-A` récupère les paquets, le `-n` résout les adresses IP puis le tout est exporté dans `resultat_tcpdump.txt`.
+Pour la src, si vous avez l'adresse IP de la machine c'est plus simple, autrement vous mettez la vôtre car le ping renverra les caractères également, donc vous pourrez les récupérer.
 
-Et une deuxième fenêtre dans >> pour avoir une fenêtre verbeuse histoire de savoir quand l'attaque sera finit.
-Une fois fini l'attaquant éxécutera un script bash qui récupèrera le resultat_tcpdump.txt et reformer le fichier en base 64.
+Et une deuxième fenêtre dans >> pour avoir une fenêtre verbeuse, histoire de savoir quand l'attaque sera finie.
+Une fois terminé, l'attaquant éxécutera un script Bash qui récupèrera le `resultat_tcpdump.txt` pour reformer le fichier en base 64.
