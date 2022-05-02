@@ -189,8 +189,11 @@ L'attaque se déroule en trois étapes:
 
 ### 4.exe
 Ce point exe écrit en python se nomme Windows coolsence pour paraître inaperçu, après son éxécution il récupère le ipconfig/all du pc le converti en base 64, puis envoie 32 caractères ping par ping sur un vps. Sur la partie vps l'attaquant a ouvert deux fenêtres une avec un tcpdump comme cela :
+
 ```sudo tcpdump -i ens3 src XXX.XXX.XXX.XXX and icmp -A -n >> resultat_tcpdump.txt```
+
 Le -A récupère les paquets le -n résout les adresses IP puis le tout exporté sur resultat_tcpdump.txt.
 Pour la src si vous avez l'adresse ip de la machine c'est plus simple sinon vous mettez la votre car le pong renverra les caractères également donc vous pourrez récupérer.
+
 Et une deuxième fenêtre dans >> pour avoir une fenêtre verbeuse histoire de savoir quand l'attaque sera finit.
 Une fois fini l'attaquant éxécutera un script bash qui récupèrera le resultat_tcpdump.txt et reformer le fichier en base 64.
