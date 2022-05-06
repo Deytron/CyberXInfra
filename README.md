@@ -188,6 +188,7 @@ L'attaque se déroule en trois étapes:
 ### 3. c2.bat
 
 ### 4.exe
+PS (nous avons upload les py le .exe est le résultats de la compilation entre ping et r_conf)
 Ce .exe écrit en Python se nomme "Windows coolsence" pour paraître inaperçu. Après son exécution, il récupère l'output de la commande `ipconfig/all` du PC, le converti en base64, puis envoie 32 caractères ping par ping sur un VPS. Sur la partie VPS, l'attaquant a ouvert deux fenêtres, une avec un tcpdump comme cela :
 
 ```sudo tcpdump -i ens3 src XXX.XXX.XXX.XXX and icmp -A -n >> resultat_tcpdump.txt```
