@@ -183,7 +183,11 @@ L'attaque se déroule en trois étapes:
 
 ### 1. init.ps1
 
+Le fichier init.ps1 est le fichier qui va être téléchargé en premier, il permet de venir chercher one.ps1 et l'executer en admin, ce qui nous permettera de désactiver defender puisque notre victime est admin local de sa machine. 
+
 ### 2. one.ps1 administrator
+
+Comme vu au dessus, ce script va permettre plusieurs choses, dans un premier temps, on vient désactiver defender et on ajoute une exception dans C:\windows\Temp au cas ou defender se réactive etc etc. Ensuite on vient télécharger le script d'ange, le .exe, expliqué juste après. On télécharge aussi notre beacon cobalt strike, c2.bat, et on vient lancer ces 2 scripts ce qui va nous  permettre d'obtenir un "shell" et de faire noetre pivot vers le domain controller.   
 
 ### 3. c2.bat
 
